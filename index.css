@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ew-bg: #070a0f;
+    --color-ew-surface: #0d131d;
+    --color-ew-card: #111927;
+    --color-ew-border: #1f2e47;
+    --color-ew-cyan: #00e5ff;
+    --color-ew-green: #00ff88;
+    --color-ew-amber: #ffb300;
+    --color-ew-red: #ff3344;
+  }
+
+  body {
+    background-color: #070a0f;
+    color: #c8d6e5;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Military/Engineering Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #090e17;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1c2b42;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00e5ff88;
+  }
+}
+
+/* Tactical military grid background */
+.tactical-grid {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(31, 46, 71, 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(31, 46, 71, 0.25) 1px, transparent 1px);
+}
+
+.subtle-dots {
+  background-image: radial-gradient(rgba(0, 229, 255, 0.15) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Sharp tactical corner decorations */
+.corner-bracket {
+  position: relative;
+}
+
+.corner-bracket::before,
+.corner-bracket::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  pointer-events: none;
+}
+
+.corner-bracket::before {
+  top: 0;
+  left: 0;
+  border-top: 1.5px solid #00e5ff;
+  border-left: 1.5px solid #00e5ff;
+}
+
+.corner-bracket::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1.5px solid #00e5ff;
+  border-right: 1.5px solid #00e5ff;
+}
+
+/* Scan line sweep effect */
+@keyframes crt-scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.scan-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-sweep::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 229, 255, 0.04) 50%), 
+              linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 20;
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Glowing text helpers */
+.glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.7), 0 0 20px rgba(0, 229, 255, 0.3);
+}
+
+.glow-green {
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.7), 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.glow-amber {
+  text-shadow: 0 0 10px rgba(255, 179, 0, 0.7), 0 0 20px rgba(255, 179, 0, 0.3);
+}
+
+.glow-red {
+  text-shadow: 0 0 10px rgba(255, 51, 68, 0.7), 0 0 20px rgba(255, 51, 68, 0.3);
+}
+
+/* Shimmer pulse */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
